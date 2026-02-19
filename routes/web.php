@@ -30,10 +30,11 @@ Route::get('package-detail/{id}',[App\Http\Controllers\frontend\PagesController:
 ///////////////////////////////admin Dashboard/////////////////////////////
 
 Route::get('admin-login',[App\Http\Controllers\Auth\LoginController::class,'Login'])->name('login');
-Route::post('admin-postlogin',[App\Http\Controllers\Auth\LoginController::class,'postlogin'])->name('login.perform');
+Route::post('/admin-postlogin',[App\Http\Controllers\Auth\LoginController::class,'Postlogin'])->name('postlogin');
 
 // Route::group(['middleware' => 'auth'], function (){
-    Route::get('dashboard',[App\Http\Controllers\backend\DashboardController::class,'Dashboard'])->name('dashboard');
+    
+Route::get('dashboard',[App\Http\Controllers\backend\DashboardController::class,'Dashboard'])->name('dashboard');
 
 
 //sidesetting

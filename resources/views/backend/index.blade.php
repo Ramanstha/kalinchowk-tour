@@ -52,18 +52,19 @@
             <div class="h-100 bg-secondary rounded p-4">
                 <div class="d-flex align-items-center justify-content-between mb-2">
                     <h6 class="mb-0">Messages</h6>
-                    <a href="">Show All</a>
+                    <a href="{{route('view_user.contact')}}">Show All</a>
                 </div>
-
+                @foreach($messages as $message)
                 <div class="d-flex align-items-center border-bottom py-3">
                     <div class="w-100 ms-3">
                         <div class="d-flex w-100 justify-content-between">
-                            <h6 class="mb-0">Name</h6>
-                            <small>22/15</small>
+                            <h6 class="mb-0">{{ $message->name }}</h6>
+                            <small>{{ $message->created_at->format('d/m/Y') }}</small>
                         </div>
-                        <span>Message</span>
+                        <span>{!! Str::limit($message->message, 100) !!}</span>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

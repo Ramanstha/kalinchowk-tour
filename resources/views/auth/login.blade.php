@@ -10,6 +10,7 @@ $sitesetting=Sitesetting::first();
     @if(!empty($sitesetting))
     <title>{{$sitesetting->name}} | Login</title>
     @endif
+    <link rel="icon" href="{{asset('storage/sitesetting/'.$sitesetting->image)}}" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -139,9 +140,9 @@ $sitesetting=Sitesetting::first();
         <div class="shape"></div>
     </div>
 
-    <form action="{{route('login.perform')}}" method="POST">
+    <form action="{{route('postlogin')}}" method="POST">
         @csrf
-
+        
         @if(!empty($sitesetting))
         <h3>Welcome <br>To</h3>
         <h3 class="text-warning">{{$sitesetting->name}}</h3>
@@ -168,4 +169,5 @@ $sitesetting=Sitesetting::first();
         <button class="btn btn-primary">Log In</button>
     </form>
 </body>
+
 </html>

@@ -63,4 +63,5 @@ class AboutusController extends Controller
         }
         return redirect()->back()->with('message','Data Deleted Successfully');
     }
+
 }

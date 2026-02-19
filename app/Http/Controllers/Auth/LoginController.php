@@ -15,13 +15,16 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function postlogin(LoginRequest $request)
+    public function Postlogin(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
+        // dd($credentials);
         if (Auth::attempt($credentials)) {
             return redirect()->route('dashboard');
         }
-        return redirect()->back()->with('message','Login details are not valid');
+        else {
+            return redirect()->back()->with('message','Login details are not valid');
+        }
     }
     
     public function Logout() {
