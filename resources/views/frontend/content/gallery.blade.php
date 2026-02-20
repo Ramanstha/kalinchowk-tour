@@ -36,6 +36,11 @@
 				@endforeach
 			</div>
 		</div>
+        <!-- <div class="col-12">
+            <div class="d-flex justify-content-center" style="padding: 30px;">
+                {{ $galleryItems->links() }}
+            </div>
+        </div> -->
     </div>
 </div>
 <!-- Service End -->

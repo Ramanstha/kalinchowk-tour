@@ -14,7 +14,8 @@ class PagesController extends Controller
 {
     public function gallery(){
         $gallery=Gallery::orderby('id','desc')->get();
-        return view('frontend.content.gallery',compact('gallery'));
+         $galleryItems = Gallery::orderby('id','desc')->paginate(12);
+        return view('frontend.content.gallery',compact('gallery','galleryItems'));
     }
 
     public function ourteam(){

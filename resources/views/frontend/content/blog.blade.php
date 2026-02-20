@@ -46,7 +46,7 @@
                     <div class="col-12">
                         <nav aria-label="Page navigation">
                             <ul class="pagination pagination-lg justify-content-center bg-white mb-0"
-                                style="padding: 30px; position: relative; z-index: 1;">
+                                style="padding: 30px;">
                                 <li class="page-item disabled">
                                     <a class="page-link" href="#" aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>

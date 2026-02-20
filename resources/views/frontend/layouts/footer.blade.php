@@ -45,7 +45,7 @@ $service = Service::orderBy('id','asc')->take(5)->get();
                     <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;">Our Services</h5>
                     @foreach ($service as $service)
                     <div class="d-flex flex-column justify-content-start">
-                        <p class="text-white-50 mb-2"><i class="fa fa-angle-right mr-2"></i>fghihugyuftygiuho</p>
+                        <p class="text-white-50 text-capitalize mb-2"><i class="fa fa-angle-right mr-2"></i>{{$service->title}}</p>
                     </div>
                     @endforeach
                 </div>

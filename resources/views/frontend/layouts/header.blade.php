@@ -46,11 +46,12 @@ $media = SocialMedia::first();
     </div>
 
     <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+        <div class=" container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             @if (!empty($sitesetting))
-            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5">
-                <a href="{{route('home')}}" class="navbar-brand">
-                    <h1 class="m-0 text-capitalize text-dark">{{$sitesetting->name}}</h1>
+            <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-3">
+                <a href="{{route('home')}}" class="navbar-brand d-flex align-items-center">
+                    <img src="{{asset('storage/sitesetting/'.$sitesetting->image)}}" alt="Logo" style="height: 70px;">
+                    <h3 class="m-0 text-capitalize text-dark pl-lg-3">{{$sitesetting->name}}</h3>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
