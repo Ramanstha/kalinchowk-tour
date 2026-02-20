@@ -81,14 +81,14 @@ $sitesetting = Sitesetting::first();
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="{{asset('storage/sitesetting/'.$sitesetting->image)}}" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
+                            <span class="d-none d-lg-inline-flex">{{$sitesetting->name}}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
+                            <a href="{{route('changepassword')}}" class="dropdown-item">Change Password</a>
+                            <a href="{{route('changedetails')}}" class="dropdown-item">Change Details</a>
+                            <a href="{{route('logout')}}" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                     @endif
-                </div>
+                </div>  
             </nav>
