@@ -130,22 +130,24 @@
             <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Packages</h6>
             <h1>Pefect Tour Packages</h1>
         </div>
-        <div class="row">
+        <div class="row g-4">
             @foreach ($packages as $packages)
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white mb-2">
-                    <img class="package-img" src="{{asset('storage/package/'.$packages->image)}}" alt="">
-                    <div class="p-2">
-                        <a href="{{route('package-detail',$packages->id)}}" class="m-0 text-capitalize font-weight-bolder">
-                            <i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$packages->destination}}</a>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item pb-4">
+                    <div class="overflow-hidden mb-2">
+                        <img class="img-fluid" src="{{asset('storage/package/'.$packages->image)}}" alt="">
+                    </div>
+                    <div class="text-center px-4">
+                        <h4 class="text-uppercase font-weight-bolder">{{$packages->destination}}</h4>
                         <div class="pt-2 d-flex justify-content-between mb-3">
-                            <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{$packages->days}}
-                                days</small>
+                            <small class="m-0">{{$packages->days}}-days</small>
                             <small class="m-0">Rs.{{$packages->price1}}/ <span class="text-success">Bus</span></small>
                             <small class="m-0">Rs.{{$packages->price2}}/ <span class="text-success">Jeep</span></small>
                         </div>
-                        <p class="h5 text-decoration-none">{!!Str::limit($packages->description,100)!!}</p>
+                        <p>{!!Str::limit($packages->description,400)!!}</p>
                     </div>
+                        <a class="btn-slide mt-2" href="{{route('package-detail',$packages->id)}}"><i
+                                class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
             </div>
             @endforeach
@@ -153,6 +155,7 @@
     </div>
 </div>
 <!-- Packages End -->
+
 <!-- Team Start -->
 <div class="container-fluid">
     <div class="container pt-5 pb-3">

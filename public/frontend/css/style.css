@@ -9804,3 +9804,62 @@ h6,
   transform: scale(1.1);
   transition: all 0.5s ease;
 }
+
+
+
+
+/* //////////////////////////// */
+
+.service-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .07);
+}
+
+.service-item img {
+    transition: .5s;
+}
+
+.service-item:hover img {
+    transform: scale(1.1);
+}
+
+.service-item a.btn-slide {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    font-size: 0;
+    text-decoration: none;
+}
+
+.service-item a.btn-slide i,
+.service-item a.btn-slide span {
+    position: relative;
+    height: 40px;
+    padding: 0 15px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    color: #FFFFFF;
+    background: var(--primary);
+    border-radius: 0 35px 35px 0;
+    transition: .5s;
+    z-index: 2;
+}
+
+.service-item a.btn-slide span {
+    padding-left: 0;
+    left: -100%;
+    z-index: 1;
+}
+
+.service-item:hover a.btn-slide i {
+    border-radius: 0;
+}
+
+.service-item:hover a.btn-slide span {
+    left: 0;
+}
+
+.service-item a.btn-slide:hover i,
+.service-item a.btn-slide:hover span {
+    background: var(--primary);
+}

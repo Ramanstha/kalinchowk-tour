@@ -80,7 +80,7 @@
                         <div class="package-item bg-white mb-2">
                             <img class="img-fluid" src="{{asset('storage/package/'.$packagedetail->image)}}" alt="">
                             <div class="p-4">
-                                <h3 class="m-0 text-capitalize text-center font-weight-bolder pb-2">
+                                <h3 class="m-0 text-uppercase text-center font-weight-bolder pb-2">
                             <i class="fa fa-map-marker-alt text-primary mr-2"></i>{{$packagedetail->destination}}</h3>
                                 <div class="pt-2 d-flex justify-content-between mb-3">
                             <small class="m-0"><i class="fa fa-calendar-alt text-primary mr-2"></i>{{$packagedetail->days}}
