@@ -7,7 +7,7 @@
         <div class="carousel-inner">
             @foreach ($banner as $key=> $banner)
             <div class="carousel-item {{$key==0?'active':''}}">
-                <img class="w-100" src="{{asset('storage/banner/'.$banner->image)}}" alt="Image">
+                <img class="w-100" src="{{asset('storage/banner/'.$banner->image)}}" height="600px" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
                         <h1 class="display-3 text-white mb-md-4">{{$banner->title}}</h1>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="d-flex flex-column">
                         <h5 class="">Competitive Pricing</h5>
-                        <p class="m-0">Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</p>
+                        <p class="m-0">We offer competitive prices for all our services.</p>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                     </div>
                     <div class="d-flex flex-column">
                         <h5 class="">Best Services</h5>
-                        <p class="m-0">Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</p>
+                        <p class="m-0">We are proud to provide best services.</p>
                     </div>
                 </div>
             </div>
@@ -91,8 +91,8 @@
                         <i class="fa fa-2x fa-globe text-white"></i>
                     </div>
                     <div class="d-flex flex-column">
-                        <h5 class="">Worldwide Coverage</h5>
-                        <p class="m-0">Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</p>
+                        <h5 class="">All Nepal Coverage</h5>
+                        <p class="m-0">We provide comprehensive coverage for all popular tourist destinations in Nepal.</p>
                     </div>
                 </div>
             </div>
