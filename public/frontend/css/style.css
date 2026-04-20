@@ -4089,6 +4089,10 @@ header{
     padding-right: 0;
     padding-left: 0;
   }
+
+  .navbar-brand h3{
+    font-size: 18px;
+  }
 }
 
 @media (min-width: 576px) {
