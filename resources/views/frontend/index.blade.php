@@ -5,9 +5,9 @@
 <div class="container-fluid p-0">
     <div id="header-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            @foreach ($banner as $key => $item)
-            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                <img class="w-100 banner-img" src="{{ asset('storage/banner/'.$item->image) }}" alt="{{ $item->title }}">
+            @foreach ($banner as $key=> $banner)
+            <div class="carousel-item {{$key==0?'active':''}}">
+                <img class="w-100" src="{{asset('storage/banner/'.$banner->image)}}" height="600px" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
                         <h1 class="display-3 text-white mb-md-4">{{ $item->title }}</h1>
@@ -67,8 +67,8 @@
                         <i class="fa fa-2x fa-money-check-alt text-white"></i>
                     </div>
                     <div class="d-flex flex-column">
-                        <h5>Competitive Pricing</h5>
-                        <p class="m-0">Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</p>
+                        <h5 class="">Competitive Pricing</h5>
+                        <p class="m-0">We offer competitive prices for all our services.</p>
                     </div>
                 </div>
             </div>
@@ -78,8 +78,8 @@
                         <i class="fa fa-2x fa-award text-white"></i>
                     </div>
                     <div class="d-flex flex-column">
-                        <h5>Best Services</h5>
-                        <p class="m-0">Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</p>
+                        <h5 class="">Best Services</h5>
+                        <p class="m-0">We are proud to provide best services.</p>
                     </div>
                 </div>
             </div>
@@ -89,8 +89,8 @@
                         <i class="fa fa-2x fa-globe text-white"></i>
                     </div>
                     <div class="d-flex flex-column">
-                        <h5>Worldwide Coverage</h5>
-                        <p class="m-0">Magna sit magna dolor duo dolor labore rebum amet elitr est diam sea</p>
+                        <h5 class="">All Nepal Coverage</h5>
+                        <p class="m-0">We provide comprehensive coverage for all popular tourist destinations in Nepal.</p>
                     </div>
                 </div>
             </div>
@@ -128,23 +128,24 @@
             <h6 class="text-primary text-uppercase section-subtitle">Packages</h6>
             <h1>Perfect Tour Packages</h1>
         </div>
-        <div class="row">
-            @foreach ($packages as $item)
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="package-item bg-white h-100">
-                    <a href="{{ route('package-detail', $item->id) }}">
-                        <img class="package-img" src="{{ asset('storage/package/'.$item->image) }}" alt="{{ $item->destination }}">
-                    </a>
-                    <div class="p-3">
-                        <a href="{{ route('package-detail', $item->id) }}" class="m-0 text-capitalize font-weight-bolder">
-                            <i class="fa fa-map-marker-alt text-primary mr-2"></i>{{ $item->destination }}</a>
-                        <div class="package-meta pt-2 mb-3">
-                            <small><i class="fa fa-calendar-alt text-primary mr-2"></i>{{ $item->days }} days</small>
-                            <small>Rs.{{ $item->price1 }}/ <span class="text-success">Bus</span></small>
-                            <small>Rs.{{ $item->price2 }}/ <span class="text-success">Jeep</span></small>
-                        </div>
-                        <p class="m-0">{{ Str::limit(strip_tags($item->description), 100) }}</p>
+        <div class="row g-4">
+            @foreach ($packages as $packages)
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item pb-4">
+                    <div class="overflow-hidden mb-2">
+                        <img class="img-fluid" src="{{asset('storage/package/'.$packages->image)}}" alt="">
                     </div>
+                    <div class="text-center px-4">
+                        <h4 class="text-uppercase font-weight-bolder">{{$packages->destination}}</h4>
+                        <div class="pt-2 d-flex justify-content-between mb-3">
+                            <small class="m-0">{{$packages->days}}-days</small>
+                            <small class="m-0">Rs.{{$packages->price1}}/ <span class="text-success">Bus</span></small>
+                            <small class="m-0">Rs.{{$packages->price2}}/ <span class="text-success">Jeep</span></small>
+                        </div>
+                        <p>{!!Str::limit($packages->description,400)!!}</p>
+                    </div>
+                        <a class="btn-slide mt-2" href="{{route('package-detail',$packages->id)}}"><i
+                                class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
             </div>
             @endforeach
