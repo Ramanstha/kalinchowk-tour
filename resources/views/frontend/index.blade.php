@@ -128,10 +128,10 @@
             <h6 class="text-primary text-uppercase section-subtitle">Packages</h6>
             <h1>Perfect Tour Packages</h1>
         </div>
-        <div class="row g-4">
+        <div class="row">
             @foreach ($packages as $package)
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item pb-4">
+            <div class="col-md-6 col-lg-4 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item h-100 pb-4">
                     <div class="overflow-hidden mb-2">
                         <img class="img-fluid" src="{{asset('storage/package/'.$package->image)}}" alt="">
                     </div>

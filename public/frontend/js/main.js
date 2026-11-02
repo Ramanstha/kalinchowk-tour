@@ -50,6 +50,7 @@
         dots: true,
         loop: true,
         center: true,
+        autoplayHoverPause: true,
         responsive: {
             0:{
                 items:1
@@ -58,7 +59,8 @@
                 items:1
             },
             768:{
-                items:2
+                items:2,
+                center:false
             },
             992:{
                 items:3

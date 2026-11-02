@@ -29,7 +29,7 @@ use App\Models\Sitesetting;
     {{-- <link href="{{asset('fronted/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Customized Bootstrap Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css?v=1.4') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css?v=1.5') }}">
 
 </head>
 
