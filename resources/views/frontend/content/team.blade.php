@@ -31,10 +31,16 @@
                         <img class="img-fluid w-100" src="{{asset('storage/team/'.$team->image)}}"
                             style="height: 250px">
                         <div class="team-social">
-                            <a class="btn btn-outline-primary btn-square" href="{{$team->facebook}}"><i
+                            @if($team->facebook)
+                            <a class="btn btn-outline-primary btn-square" href="{{$team->facebook}}" target="_blank" rel="noopener"><i
                                     class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-primary btn-square" href="{{$team->instagram}}"><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-primary btn-square" href="{{$team->linkedin}}"><i class="fab fa-linkedin-in"></i></a>
+                            @endif
+                            @if($team->instagram)
+                            <a class="btn btn-outline-primary btn-square" href="{{$team->instagram}}" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                            @endif
+                            @if($team->linkedin)
+                            <a class="btn btn-outline-primary btn-square" href="{{$team->linkedin}}" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                            @endif
                         </div>
                     </div>
                     <div class="text-center py-4">

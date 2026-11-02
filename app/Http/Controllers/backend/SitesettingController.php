@@ -27,22 +27,22 @@ class SitesettingController extends Controller
         $destination = public_path('storage/sitesetting/');
         $filename-> move($destination, $file);
         $data['image']=$file;
-        $data=Sitesetting::insert($data);
+        $data=Sitesetting::create($data);
         return redirect()->route('view.sitesetting')->with('message','Data Inserted Successfully');
     }
 
     public function Edit($id){
-        $data=Sitesetting::find($id);
+        $data=Sitesetting::findOrFail($id);
         return view('backend.sitesetting.edit',['data'=>$data]);
     }
 
-    public function Update(Request $request,$id){
-        $data=Sitesetting::find($id);
+    public function Update(SitesettingRequest $request,$id){
+        $data=Sitesetting::findOrFail($id);
         $data1=$request->except('_token','image');
         if($request->file('image')){
                 File::delete(public_path('storage/sitesetting/'.$data->image));
                 $filename=$request->file('image');
-                $file= time(). '-'. 'image'. $filename->getClientOriginalExtension();
+                $file= time(). '-'. 'image' . '.' . $filename->getClientOriginalExtension();
                 $destination=public_path('storage/sitesetting/');
                 $filename->move($destination,$file);
                 $data1['image']=$file;
@@ -52,7 +52,7 @@ class SitesettingController extends Controller
    
     }
     public function Delete($id){
-        $data=Sitesetting::find($id);
+        $data=Sitesetting::findOrFail($id);
         $img_path=public_path('storage/sitesetting/').$data->image;
         if(file_exists($img_path) && $data->image!=null){
             unlink($img_path);

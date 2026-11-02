@@ -28,18 +28,18 @@ class PackageController extends Controller
         $filename1->move($destination, $file1);
         $data['image']=$file1;
         }
-        $package = Package::insert($data);
+        $package = Package::create($data);
         return redirect()->route('view.package')->with('message','Data Inserted Successfully !!!');
 
     }
 
     public function Edit($id){
-        $data=Package::find($id);
+        $data=Package::findOrFail($id);
         return view('backend.package.edit',['data'=>$data]);
     }
 
-    public function Update(Request $request,$id){
-        $data1=Package::find($id);
+    public function Update(PackageRequest $request,$id){
+        $data1=Package::findOrFail($id);
         $data = $request->except('_token','image');
         if ($request->file('image')){
             File::delete(public_path('storage/package/'.$data1->image));
@@ -55,7 +55,7 @@ class PackageController extends Controller
     }
 
     public function Delete($id){
-        $data=Package::find($id);
+        $data=Package::findOrFail($id);
         $img_path=public_path('storage/package/').$data->image;
         if(file_exists($img_path) && $data->image!=null){
             unlink($img_path);

@@ -27,22 +27,22 @@ class TestimonialsController extends Controller
         $destination = public_path('storage/testimonial/');
         $filename-> move($destination, $file);
         $data['image']=$file;
-        $data=Testimonial::insert($data);
+        $data=Testimonial::create($data);
         return redirect()->route('view.testimonial')->with('message','Data Inserted Successfully');
     }
 
     public function Edit($id){
-        $data=Testimonial::find($id);
+        $data=Testimonial::findOrFail($id);
         return view('backend.testimonial.edit',['data'=>$data]);
     }
 
-    public function Update(Request $request,$id){
-        $data=Testimonial::find($id);
+    public function Update(TestimonialsRequest $request,$id){
+        $data=Testimonial::findOrFail($id);
         $data1=$request->except('_token','image');
         if($request->file('image')){
                 File::delete(public_path('storage/testimonial/'.$data->image));
                 $filename=$request->file('image');
-                $file= time(). '-'. 'image'. $filename->getClientOriginalExtension();
+                $file= time(). '-'. 'image' . '.' . $filename->getClientOriginalExtension();
                 $destination=public_path('storage/testimonial/');
                 $filename->move($destination,$file);
                 $data1['image']=$file;
@@ -52,7 +52,7 @@ class TestimonialsController extends Controller
    
     }
     public function Delete($id){
-        $data=Testimonial::find($id);
+        $data=Testimonial::findOrFail($id);
         $img_path=public_path('storage/testimonial/').$data->image;
         if(file_exists($img_path) && $data->image!=null){
             unlink($img_path);

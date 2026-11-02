@@ -24,9 +24,9 @@ class ChangepasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'oldPass'=>'required',
-            'newPass'=>'required_with:confirmpass|same:confirmpass',
-            'confirmpass'=>'required'
+            'oldpassword'=>'required',
+            'newpassword'=>'required|min:8|same:confirmpassword',
+            'confirmpassword'=>'required'
         ];
     }
 }

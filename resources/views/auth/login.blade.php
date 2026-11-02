@@ -160,7 +160,7 @@ $sitesetting=Sitesetting::first();
         <div>
             <label class="mb-1">Password <span class="text-danger">*</span></label>
             <input class="form-control" type="password" name="password" placeholder="Password"
-                value="{{old('password')}}">
+                >
             @error('password')
             <span class="text-danger">{{ $message }}</span>
             @enderror

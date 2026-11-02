@@ -37,7 +37,7 @@
                     <div class="mb-3">
                         <label class="col-form-label col-md-2">Map <span class="text-danger">*</span></label>
                         <div class="col-md-12">
-                            <textarea class="form-control" name="map" id="map" rows="3" value="{!!$data->map!!}">{!!$data->map!!}</textarea>
+                            <textarea class="form-control" name="map" id="map" rows="3">{{$data->map}}</textarea>
                             @error('map')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -50,8 +50,4 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('map');
-</script>
 @endsection

@@ -10,7 +10,7 @@ use App\Models\Usermessage;
 class DashboardController extends Controller
 {
     public function Dashboard(){
-        $messages=Usermessage::orderby('id','desc')->get();
+        $messages=Usermessage::orderby('id','desc')->take(10)->get();
         return view('backend.index',['messages'=>$messages]);
     }
 

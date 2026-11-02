@@ -24,7 +24,7 @@ class BannerRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required',
+            'image' => [$this->route('id') ? 'nullable' : 'required', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:4096'],
         ];
     }
 }

@@ -10,7 +10,7 @@
                     <p><strong>Phone:</strong> {{ $userMessage->phone }}</p>
                     <p><strong>Address:</strong> {{ $userMessage->address }}</p>
                     <p><strong>Message:</strong></p>
-                    {!! $userMessage->message !!}
+                    <p>{!! nl2br(e($userMessage->message)) !!}</p>
                 </div>
             </div>
         </div>

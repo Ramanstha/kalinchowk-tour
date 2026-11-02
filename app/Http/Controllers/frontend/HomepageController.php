@@ -14,7 +14,7 @@ use App\Models\Package;
 use App\Models\Service;
 use App\Models\Testimonial;
 
-use App\Models\usermessage;
+use App\Models\Usermessage;
 use App\Http\Requests\UsermessageRequest;
 
 class HomepageController extends Controller
@@ -60,8 +60,7 @@ class HomepageController extends Controller
     }
 
     public function storeContactMessage(UsermessageRequest $request){
-        $data=$request->except('_token');
-        $data=usermessage::insert($data);
+        Usermessage::create($request->validated());
         return redirect()->route('contact-us')->with('message','Data Inserted Successfully');
 
     }

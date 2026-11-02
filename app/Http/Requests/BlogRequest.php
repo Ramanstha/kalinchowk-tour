@@ -26,7 +26,7 @@ class BlogRequest extends FormRequest
         return [
             'title'=>'required',
             'description'=>'required',
-            'image'=>'required',
+            'image' => [$this->route('id') ? 'nullable' : 'required', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:4096'],
         ];
     }
 }

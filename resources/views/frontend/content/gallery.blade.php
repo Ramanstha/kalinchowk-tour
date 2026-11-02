@@ -26,10 +26,10 @@
 
         <div class="row ">
 			<div class="tz-gallery d-flex flex-wrap justify-content-between">
-				@foreach ($gallery as $gallery)
+				@foreach ($galleryItems as $photo)
 				<div class="col-sm-12 col-md-3 col-lg-3 my-3">
-					<a href="{{asset('storage/gallery/main/'.$gallery->image)}}" target="_blank">
-						<img class="gallery-img" src="{{asset('storage/gallery/thumbnail/'.$gallery->image)}}"
+					<a href="{{asset('storage/gallery/main/'.$photo->image)}}" target="_blank">
+						<img class="gallery-img" src="{{asset('storage/gallery/thumbnail/'.$photo->image)}}"
 							alt="Gallery Images" width="100%">
 					</a>
 				</div>

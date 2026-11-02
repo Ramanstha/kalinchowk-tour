@@ -48,10 +48,10 @@ $media = SocialMedia::first();
                     @if (!empty($media))
                     <div class="social-icons">
                         <a class="text-primary px-2" href="{{ $media->facebook }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="text-primary px-2" href="{{ $media->linkedin }}" target="_blank" title="Viber"><i class="fab fa-viber"></i></a>
+                        <a class="text-primary px-2" href="{{ $media->viber }}" target="_blank" title="Viber"><i class="fab fa-viber"></i></a>
                         <a class="text-primary px-2" href="{{ $media->youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
                         <a class="text-primary px-2" href="{{ $media->instagram }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a class="text-primary px-2" href="{{ $media->whatsapp ?? $media->linkedin }}" target="_blank" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                        <a class="text-primary px-2" href="{{ $media->whatsapp }}" target="_blank" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                     @endif
                 </div>
@@ -62,11 +62,12 @@ $media = SocialMedia::first();
     {{-- Main navbar --}}
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            @if (!empty($sitesetting))
             <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-2 py-lg-0 px-3">
                 <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center">
+                    @if (!empty($sitesetting))
                     <img src="{{ asset('storage/sitesetting/' . $sitesetting->image) }}" alt="Logo">
                     <h3 class="m-0 text-capitalize text-dark ml-2">{{ $sitesetting->name }}</h3>
+                    @endif
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -99,16 +100,15 @@ $media = SocialMedia::first();
                         @if (!empty($media))
                         <div class="social-icons">
                             <a class="text-primary px-1" href="{{ $media->facebook }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a class="text-primary px-1" href="{{ $media->linkedin }}" target="_blank" title="Viber"><i class="fab fa-viber"></i></a>
+                            <a class="text-primary px-1" href="{{ $media->viber }}" target="_blank" title="Viber"><i class="fab fa-viber"></i></a>
                             <a class="text-primary px-1" href="{{ $media->youtube }}" target="_blank" title="Youtube"><i class="fab fa-youtube"></i></a>
                             <a class="text-primary px-1" href="{{ $media->instagram }}" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a class="text-primary px-1" href="{{ $media->whatsapp ?? $media->linkedin }}" target="_blank" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+                            <a class="text-primary px-1" href="{{ $media->whatsapp }}" target="_blank" title="Whatsapp"><i class="fab fa-whatsapp"></i></a>
                         </div>
                         @endif
                     </div>
                 </div>
             </nav>
-            @endif
         </div>
     </div>
 </header>

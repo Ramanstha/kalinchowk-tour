@@ -22,48 +22,29 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="row pb-3">
-                    @foreach ($blog as $blog)
+                    @foreach ($blog as $post)
                     <div class="col-lg-6 col-md-6 mb-4 pb-2">
                         <div class="blog-item">
                             <div class="position-relative">
-                                <img class="blog-img" src="{{asset('storage/blog/'.$blog->image)}}" alt="">
+                                <img class="blog-img" src="{{asset('storage/blog/'.$post->image)}}" alt="">
                                 <div class="blog-date">
-                                    <h6 class="font-weight-bold mb-n1">{{date('d', strtotime($blog->created_at))}}</h6>
+                                    <h6 class="font-weight-bold mb-n1">{{date('d', strtotime($post->created_at))}}</h6>
                                     <small
-                                        class="text-white text-uppercase">{{date('M', strtotime($blog->created_at))}}</small>
+                                        class="text-white text-uppercase">{{date('M', strtotime($post->created_at))}}</small>
                                 </div>
                             </div>
                             <div class="bg-white p-4">
                                 <div class="d-flex mb-2 justify-content-center">
                                     <a class="blog-title text-decoration-none text-center font-weight-bold "
-                                        href="{{route('blog-detail',$blog->id)}}">{{$blog->title}}</a>
+                                        href="{{route('blog-detail',$post->id)}}">{{$post->title}}</a>
                                 </div>
-                                <p>{!!Str::limit($blog->description,100)!!}
+                                <p>{{ Str::limit(strip_tags($post->description), 100) }}</p>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                    <div class="col-12">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination pagination-lg justify-content-center bg-white mb-0"
-                                style="padding: 30px;">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                    <div class="col-12 d-flex justify-content-center">
+                        {{ $blog->links() }}
                     </div>
                 </div>
             </div>
@@ -89,13 +70,13 @@
                 <!-- Recent Post -->
                 <div class="mb-5">
                     <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
-                    @foreach ($recent as $recent)
+                    @foreach ($recent as $item)
                     <a class="d-flex align-items-center text-decoration-none bg-white mb-3"
-                        href="{{route('blog-detail',$recent->id)}}">
-                        <img class="recent-post" src="{{asset('storage/blog/'.$recent->image)}}" alt="">
+                        href="{{route('blog-detail',$item->id)}}">
+                        <img class="recent-post" src="{{asset('storage/blog/'.$item->image)}}" alt="">
                         <div class="pl-3">
-                            <h6 class="m-1">{{$recent->title}}</h6>
-                            <small>{{date('d M Y', strtotime($blog->created_at))}}</small>
+                            <h6 class="m-1">{{$item->title}}</h6>
+                            <small>{{date('d M Y', strtotime($item->created_at))}}</small>
                         </div>
                     </a>
                     @endforeach

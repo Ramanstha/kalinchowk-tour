@@ -25,8 +25,10 @@ class PackageRequest extends FormRequest
     {
         return [
             'destination' => 'required',
-            'image' => 'required|mimes:jpg,png,gif.jpeg',
-            'days' => 'required',
+            'image' => [$this->route('id') ? 'nullable' : 'required', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:4096'],
+            'days' => 'required|integer|min:1',
+            'price1' => 'nullable|integer|min:0',
+            'price2' => 'nullable|integer|min:0',
             'description' => 'required',
         ];
     }

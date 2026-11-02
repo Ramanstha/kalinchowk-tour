@@ -5,12 +5,12 @@
 <div class="container-fluid p-0">
     <div id="header-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-            @foreach ($banner as $key=> $banner)
+            @foreach ($banner as $key => $slide)
             <div class="carousel-item {{$key==0?'active':''}}">
-                <img class="w-100" src="{{asset('storage/banner/'.$banner->image)}}" height="600px" alt="Image">
+                <img class="w-100" src="{{asset('storage/banner/'.$slide->image)}}" height="600" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3" style="max-width: 900px;">
-                        <h1 class="display-3 text-white mb-md-4">{{ $item->title }}</h1>
+                        <h1 class="display-3 text-white mb-md-4">{{ $slide->title }}</h1>
                     </div>
                 </div>
             </div>
@@ -40,13 +40,13 @@
             <div class="col-lg-6 about-img-col">
                 <div class="position-relative h-100">
                     <img class="position-absolute w-100 h-100" src="{{ asset('storage/aboutus/'.$aboutus->image) }}"
-                        alt="{{ $aboutus->title }}" style="object-fit: cover;">
+                        alt="About Us" style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-6 pt-lg-5 pb-lg-5">
                 <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
                     <h6 class="text-primary text-uppercase section-subtitle">About Us</h6>
-                    <h1 class="mb-3">{{ $aboutus->title }}</h1>
+                    <h1 class="mb-3">{{ $aboutus->title ?? 'Welcome to Kalinchowk Tour' }}</h1>
                     <p>{{ Str::limit(strip_tags($aboutus->description), 500) }}</p>
                     <a href="{{ route('about') }}" class="btn btn-primary mt-1">More</a>
                 </div>
@@ -129,23 +129,23 @@
             <h1>Perfect Tour Packages</h1>
         </div>
         <div class="row g-4">
-            @foreach ($packages as $packages)
+            @foreach ($packages as $package)
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item pb-4">
                     <div class="overflow-hidden mb-2">
-                        <img class="img-fluid" src="{{asset('storage/package/'.$packages->image)}}" alt="">
+                        <img class="img-fluid" src="{{asset('storage/package/'.$package->image)}}" alt="">
                     </div>
                     <div class="text-center px-4">
-                        <h4 class="text-uppercase font-weight-bolder">{{$packages->destination}}</h4>
+                        <h4 class="text-uppercase font-weight-bolder">{{$package->destination}}</h4>
                         <div class="pt-2 d-flex justify-content-between mb-3">
-                            <small class="m-0">{{$packages->days}}-days</small>
-                            <small class="m-0">Rs.{{$packages->price1}}/ <span class="text-success">Bus</span></small>
-                            <small class="m-0">Rs.{{$packages->price2}}/ <span class="text-success">Jeep</span></small>
+                            <small class="m-0">{{$package->days}}-days</small>
+                            <small class="m-0">Rs.{{$package->price1}}/ <span class="text-success">Bus</span></small>
+                            <small class="m-0">Rs.{{$package->price2}}/ <span class="text-success">Jeep</span></small>
                         </div>
-                        <p>{!!Str::limit($packages->description,400)!!}</p>
+                        <p>{{ Str::limit(strip_tags($package->description), 400) }}</p>
                     </div>
-                        <a class="btn-slide mt-2" href="{{route('package-detail',$packages->id)}}"><i
-                                class="fa fa-arrow-right"></i><span>Read More</span></a>
+                    <a class="btn-slide mt-2" href="{{route('package-detail',$package->id)}}"><i
+                            class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
             </div>
             @endforeach

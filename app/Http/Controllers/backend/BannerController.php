@@ -27,22 +27,22 @@ class BannerController extends Controller
         $destination = public_path('storage/banner/');
         $filename-> move($destination, $file);
         $data['image']=$file;
-        $data=Banner::insert($data);
+        $data=Banner::create($data);
         return redirect()->route('view.banner')->with('message','Data Inserted Successfully');
     }
 
     public function Edit($id){
-        $data=Banner::find($id);
+        $data=Banner::findOrFail($id);
         return view('backend.banner.edit',['data'=>$data]);
     }
 
-    public function Update(Request $request,$id){
-        $data=Banner::find($id);
+    public function Update(BannerRequest $request,$id){
+        $data=Banner::findOrFail($id);
         $data1=$request->except('_token','image');
         if($request->file('image')){
                 File::delete(public_path('storage/banner/'.$data->image));
                 $filename=$request->file('image');
-                $file= time(). '-'. 'image'. $filename->getClientOriginalExtension();
+                $file= time(). '-'. 'image' . '.' . $filename->getClientOriginalExtension();
                 $destination=public_path('storage/banner/');
                 $filename->move($destination,$file);
                 $data1['image']=$file;
@@ -52,7 +52,7 @@ class BannerController extends Controller
    
     }
     public function Delete($id){
-        $data=Banner::find($id);
+        $data=Banner::findOrFail($id);
         $img_path=public_path('storage/banner/').$data->image;
         if(file_exists($img_path) && $data->image!=null){
             unlink($img_path);
@@ -62,12 +62,5 @@ class BannerController extends Controller
             $data->delete();
         }
         return redirect()->back()->with('message','Data Deleted Successfully');
-    }
-
-    public function changeStatus(Request $request){
-        $blogs = Blog::find($request->blogstatus_id);
-        $blogs->status = $request->status;
-        $blogs->save();
-        return response()->json(['success'=>'User status change successfully.']);
     }
 }

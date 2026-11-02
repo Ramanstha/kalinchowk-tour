@@ -19,7 +19,12 @@
     <div class="usercontact-row row">
         <div class="col-md-6 col-sm-12">
             @if (!empty($contact))
-            <iframe src="{{$contact->map}}" frameborder="0" height="590px" width="100%">{{$contact->map}}</iframe>
+            @php
+                // Accept a plain URL, a CKEditor-wrapped URL, or a pasted <iframe> embed code
+                $map = html_entity_decode($contact->map);
+                $mapSrc = preg_match('/src=["\']([^"\']+)["\']/i', $map, $m) ? $m[1] : trim(strip_tags($map));
+            @endphp
+            <iframe src="{{ $mapSrc }}" frameborder="0" height="590px" width="100%" loading="lazy"></iframe>
             @endif
         </div>
         <div class="col-md-6 col-sm-12 " id="contact-form">
@@ -30,7 +35,7 @@
                 @csrf
                 <div class="mb-3">
                     <label class="form-label" for="name">Name: <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" placeholder="Full Name" name="name" />
+                    <input class="form-control" type="text" placeholder="Full Name" name="name" value="{{ old('name') }}" />
                     @error('name')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -38,7 +43,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="email">Email: <span class="text-danger">*</span></label>
-                    <input class="form-control" type="email" placeholder="Email" name="email" />
+                    <input class="form-control" type="email" placeholder="Email" name="email" value="{{ old('email') }}" />
                     @error('email')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -46,7 +51,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="Address"> Address: <span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" placeholder=" Address" name="address" />
+                    <input class="form-control" type="text" placeholder=" Address" name="address" value="{{ old('address') }}" />
                     @error('address')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -54,7 +59,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="emailAddress">Phone: <span class="text-danger">*</span></label>
-                    <input class="form-control" type="tel" placeholder="+977" name="phone" />
+                    <input class="form-control" type="tel" placeholder="+977" name="phone" value="{{ old('phone') }}" />
                     @error('phone')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
@@ -63,7 +68,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="message">Message: <span class="text-danger">*</span></label>
                     <textarea class="form-control" type="text" placeholder="Message" style="height: 10rem;"
-                        name="message"></textarea>
+                        name="message">{{ old('message') }}</textarea>
                     @error('message')
                     <span class="text-danger">{{ $message }}</span>
                     @enderror

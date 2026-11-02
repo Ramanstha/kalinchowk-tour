@@ -24,11 +24,11 @@ class SocialMediaRequest extends FormRequest
     public function rules()
     {
         return [
-            'facebook' => 'url',
-            'youtube' => 'url',
-            'instagram' => 'url',
-            'viber' => 'url',
-            'whatsapp' => 'url',
+            'facebook' => 'nullable|url',
+            'youtube' => 'nullable|url',
+            'instagram' => 'nullable|url',
+            'viber' => 'nullable|url',
+            'whatsapp' => 'nullable|url',
         ];
     }
 }

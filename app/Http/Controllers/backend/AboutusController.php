@@ -27,22 +27,22 @@ class AboutusController extends Controller
         $destination = public_path('storage/aboutus/');
         $filename-> move($destination, $file);
         $data['image']=$file;
-        $data=Aboutus::insert($data);
+        $data=Aboutus::create($data);
         return redirect()->route('view.aboutus')->with('message','Data Inserted Successfully');
     }
 
     public function Edit($id){
-        $data=Aboutus::find($id);
+        $data=Aboutus::findOrFail($id);
         return view('backend.aboutus.edit',['data'=>$data]);
     }
 
-    public function Update(Request $request,$id){
-        $data=Aboutus::find($id);
+    public function Update(AboutusRequest $request,$id){
+        $data=Aboutus::findOrFail($id);
         $data1=$request->except('_token','image');
         if($request->file('image')){
                 File::delete(public_path('storage/aboutus/'.$data->image));
                 $filename=$request->file('image');
-                $file= time(). '-'. 'image'. $filename->getClientOriginalExtension();
+                $file= time(). '-'. 'image' . '.' . $filename->getClientOriginalExtension();
                 $destination=public_path('storage/aboutus/');
                 $filename->move($destination,$file);
                 $data1['image']=$file;
@@ -52,7 +52,7 @@ class AboutusController extends Controller
    
     }
     public function Delete($id){
-        $data=Aboutus::find($id);
+        $data=Aboutus::findOrFail($id);
         $img_path=public_path('storage/aboutus/').$data->image;
         if(file_exists($img_path) && $data->image!=null){
             unlink($img_path);

@@ -97,7 +97,7 @@
                 <!-- <div class="bg-white" style="padding: 30px; margin-bottom: 30px;">
                     <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">3 Comments</h4>
                     <div class="media mb-4">
-                        <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                        <img src="{{asset('frontend/img/user.jpg')}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                         <div class="media-body">
                             <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
                             <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="media">
-                        <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                        <img src="{{asset('frontend/img/user.jpg')}}" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                         <div class="media-body">
                             <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
                             <p>Diam amet duo labore stet elitr invidunt ea clita ipsum voluptua, tempor labore
@@ -117,7 +117,7 @@
                                 consetetur at sit.</p>
                             <button class="btn btn-sm btn-outline-primary">Reply</button>
                             <div class="media mt-4">
-                                <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
+                                <img src="{{asset('frontend/img/user.jpg')}}" alt="Image" class="img-fluid mr-3 mt-1"
                                     style="width: 45px;">
                                 <div class="media-body">
                                     <h6><a href="">John Doe</a> <small><i>01 Jan 2045</i></small></h6>
@@ -183,7 +183,7 @@
                 <div class="mb-5">
                     <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Recent Post</h4>
                     @foreach ($recent as $recent)
-                    <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="{{$recent->id}}">
+                    <a class="d-flex align-items-center text-decoration-none bg-white mb-3" href="{{route('blog-detail',$recent->id)}}">
                         <img class="recent-post" src="{{asset('storage/blog/'.$recent->image)}}" alt="">
                         <div class="pl-3">
                             <h6 class="m-1">{{$recent->title}}</h6>

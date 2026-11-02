@@ -25,7 +25,7 @@ $service = Service::orderBy('id','asc')->take(5)->get();
                         <a class="text-primary px-2" href="{{$media->facebook}}" target="_blank" title="Facebook">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="text-primary px-2" href="{{$media->linkedin}}" target="_blank" title="Viber">
+                        <a class="text-primary px-2" href="{{$media->viber}}" target="_blank" title="Viber">
                             <i class="fab fa-viber"></i>
                         </a>
                         <a class="text-primary px-2" href="{{$media->youtube}}" target="_blank" title="Youtube">
@@ -34,7 +34,7 @@ $service = Service::orderBy('id','asc')->take(5)->get();
                         <a class="text-primary px-2" href="{{$media->instagram}}" target="_blank" title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a class="text-primary px-2" href="{{$media->linkedin}}" target="_blank" title="Whatsapp">
+                        <a class="text-primary px-2" href="{{$media->whatsapp}}" target="_blank" title="Whatsapp">
                             <i class="fab fa-whatsapp"></i>
                         </a>    
                     </div>

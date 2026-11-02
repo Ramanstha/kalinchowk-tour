@@ -13,9 +13,8 @@ use App\Models\Team;
 class PagesController extends Controller
 {
     public function gallery(){
-        $gallery=Gallery::orderby('id','desc')->get();
-         $galleryItems = Gallery::orderby('id','desc')->paginate(12);
-        return view('frontend.content.gallery',compact('gallery','galleryItems'));
+        $galleryItems = Gallery::orderby('id','desc')->paginate(12);
+        return view('frontend.content.gallery',compact('galleryItems'));
     }
 
     public function ourteam(){
@@ -24,7 +23,7 @@ class PagesController extends Controller
     }
 
     public function blog(){
-        $blog=Blog::orderby('id','asc')->take(6)->get();
+        $blog=Blog::orderby('id','desc')->paginate(6);
         $recent=Blog::orderby('id','desc')->take(4)->get();
         $category=Package::orderby('id','desc')->get();
         return view('frontend.content.blog',compact('blog','category','recent'));

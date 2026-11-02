@@ -23,25 +23,25 @@ class ContactController extends Controller
     public function Store(ContactRequest $request){
 
         $data=$request->except('_token');
-        $data=Contact::insert($data);
+        $data=Contact::create($data);
         return redirect()->route('view.contact')->with('message','Data Inserted Successfully');
 
     }
 
     public function Edit($id){
-        $data=Contact::find($id);
+        $data=Contact::findOrFail($id);
         return view('backend.contact.edit',['data'=>$data]);
     }
 
-    public function Update(Request $request,$id){
-        $data=Contact::find($id);
+    public function Update(ContactRequest $request,$id){
+        $data=Contact::findOrFail($id);
         $data1=$request->except('_token');
         $data->update($data1);
         return redirect()->route('view.contact')->with('message', 'Data Updated Successfully');
     }
 
     public function Delete($id){
-        $data=Contact::find($id);
+        $data=Contact::findOrFail($id);
         $data->delete();
         return redirect()->back()->with('message','Data Deleted Successfully');
     }
@@ -59,7 +59,7 @@ class ContactController extends Controller
     }
     
     public function userMessageDelete($id){
-        $userMessageDelete=Usermessage::find($id);
+        $userMessageDelete=Usermessage::findOrFail($id);
         $userMessageDelete->delete();
         return redirect()->back()->with('message','Data Deleted Successfully');
     }

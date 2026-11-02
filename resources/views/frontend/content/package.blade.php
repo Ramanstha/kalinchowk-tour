@@ -37,7 +37,7 @@
                             <small class="m-0">Rs.{{$packages->price1}}/ <span class="text-success">Bus</span></small>
                             <small class="m-0">Rs.{{$packages->price2}}/ <span class="text-success">Jeep</span></small>
                         </div>
-                        <p>{!!Str::limit($packages->description,400)!!}</p>
+                        <p>{{ Str::limit(strip_tags($packages->description), 400) }}</p>
                     </div>
                         <a class="btn-slide mt-2" href="{{route('package-detail',$packages->id)}}"><i
                                 class="fa fa-arrow-right"></i><span>Read More</span></a>
@@ -72,7 +72,7 @@
                             <a class="blog-title text-decoration-none text-center font-weight-bold "
                                 href="{{route('blog-detail',$blog->id)}}">{{$blog->title}}</a>
                         </div>
-                        <p>{!!Str::limit($blog->description,100)!!}
+                        <p>{{ Str::limit(strip_tags($blog->description), 100) }}</p>
                     </div>
                 </div>
             </div>

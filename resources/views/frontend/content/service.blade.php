@@ -24,50 +24,15 @@
             <h1>Tours & Travel Services</h1>
         </div>
         <div class="row">
-            @foreach ($service as $service) 
+            @foreach ($service as $item)
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                    <i class="fa {!!$service->icon!!} mx-auto mb-4"></i>
-                    <h5 class="mb-2">Travel Guide</h5>
-                    <p class="m-0">Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem est amet labore</p>
+                <div class="service-item bg-white text-center h-100 py-5 px-4">
+                    <i class="fa fa-2x {{ $item->icon }} mx-auto mb-4"></i>
+                    <h5 class="text-capitalize mb-2">{{ $item->title }}</h5>
+                    <div class="m-0">{!! $item->description !!}</div>
                 </div>
             </div>
             @endforeach
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                    <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i>
-                    <h5 class="mb-2">Ticket Booking</h5>
-                    <p class="m-0">Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem est amet labore</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                    <i class="fa fa-2x fa-hotel mx-auto mb-4"></i>
-                    <h5 class="mb-2">Hotel Booking</h5>
-                    <p class="m-0">Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem est amet labore</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                    <i class="fa fa-2x fa-route mx-auto mb-4"></i>
-                    <h5 class="mb-2">Travel Guide</h5>
-                    <p class="m-0">Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem est amet labore</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                    <i class="fa fa-2x fa-ticket-alt mx-auto mb-4"></i>
-                    <h5 class="mb-2">Ticket Booking</h5>
-                    <p class="m-0">Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem est amet labore</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="service-item bg-white text-center mb-2 py-5 px-4">
-                    <i class="fa fa-2x fa-hotel mx-auto mb-4"></i>
-                    <h5 class="mb-2">Hotel Booking</h5>
-                    <p class="m-0">Justo sit justo eos amet tempor amet clita amet ipsum eos elitr. Amet lorem est amet labore</p>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -87,7 +52,7 @@
                 <img class="img-fluid mx-auto" src="{{asset('storage/testimonial/'.$client->image)}}"
                     style="width: 100px; height: 100px;">
                 <div class="testimonial-text bg-white p-4 mt-n5">
-                    <p class="mt-5">{!!Str::limit($client->message,100)!!}</p>
+                    <p class="mt-5">{{ Str::limit(strip_tags($client->message), 100) }}</p>
                     <h5 class="text-truncate">{{$client->name}}</h5>
                     <span class="text-capitalize">{{$client->profession}}</span>
                 </div>

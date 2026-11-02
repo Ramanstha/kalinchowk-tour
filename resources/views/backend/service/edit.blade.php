@@ -28,7 +28,7 @@
                     <div class="mb-3">
                         <label class="col-form-label col-md-2">Description <span class="text-danger">*</span></label>
                         <div class="col-md-12">
-                            <textarea class="form-control" name="description" id="description" rows="3" value="{!!$data->description!!}">{!!$data->description!!}</textarea>
+                            <textarea class="form-control" name="description" id="description" rows="3">{{$data->description}}</textarea>
                             @error('description')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror

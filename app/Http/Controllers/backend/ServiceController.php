@@ -22,24 +22,24 @@ class ServiceController extends Controller
     public function Store(ServiceRequest $request){
 
         $data=$request->except('_token');
-        $data=Service::insert($data);
+        $data=Service::create($data);
         return redirect()->route('view.service')->with('message','Data Inserted Successfully');
     }
 
     public function Edit($id){
-        $data=Service::find($id);
+        $data=Service::findOrFail($id);
         return view('backend.service.edit',['data'=>$data]);
     }
 
-    public function Update(Request $request,$id){
-        $data=Service::find($id);
+    public function Update(ServiceRequest $request,$id){
+        $data=Service::findOrFail($id);
         $data1=$request->except('_token');
         $data->update($data1);
         return redirect()->route('view.service')->with('message', 'Data Updated Successfully');
     }
 
     public function Delete($id){
-        $data=Service::find($id);
+        $data=Service::findOrFail($id);
         $data->delete();
         return redirect()->back()->with('message','Data Deleted Successfully');
     }

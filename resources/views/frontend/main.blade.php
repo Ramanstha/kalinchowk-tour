@@ -7,13 +7,15 @@ use App\Models\Sitesetting;
 
 <head>
     <meta charset="utf-8">
-    <title>{{$sitesetting->name}} - @yield('title')</title>
+    <title>{{$sitesetting->name ?? config('app.name')}} - @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
+    @if (!empty($sitesetting))
     <link href="{{asset('storage/sitesetting/'.$sitesetting->image)}}" rel="icon">
+    @endif
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -57,10 +59,6 @@ use App\Models\Sitesetting;
     <script src="{{asset('frontend/lib/tempusdominus/js/moment.min.js')}}"></script>
     <script src="{{asset('frontend/lib/tempusdominus/js/moment-timezone.min.js')}}"></script>
     <script src="{{asset('frontend/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
     <script src="{{asset('frontend/js/main.js')}}"></script>

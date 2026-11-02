@@ -24,7 +24,7 @@ class AboutusRequest extends FormRequest
     public function rules()
     {
         return [
-            'image' => 'required |mimes:jpg,jpeg,gif,png',
+            'image' => [$this->route('id') ? 'nullable' : 'required', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:4096'],
             'description' => 'required',
         ];
     }

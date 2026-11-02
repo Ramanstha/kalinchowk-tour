@@ -22,66 +22,58 @@ class GalleryController extends Controller
     }
     
     Public function Store(GalleryRequest $request){
-        $data = $request->except('_token','image');
         if ($request->hasFile('image')) {
-        foreach($request->image as $image){
-                $destinationimage = $image;
-                $destinationimage_name = rand(0, 9999) . '-destination' . '.webp';
-                $destinationPath = public_path('storage/gallery/main');
-                $thumbdestinationPath = public_path('storage/gallery/thumbnail');
-                if (!file_exists($destinationPath) && !file_exists($thumbdestinationPath)) {
-                    mkdir($destinationPath, 0777, true);
-                    mkdir($thumbdestinationPath, 0777, true);
-                }
-                $orginalimage = Image::make($destinationimage->getRealPath())->encode('webp', 100)->save($destinationPath . '/' . $destinationimage_name);
-                $img = Image::make($destinationimage->getRealPath())->encode('webp', 100)->resize(374, 321)->save($thumbdestinationPath . '/' . $destinationimage_name);
-                $data['image'] = $destinationimage_name;
-                $gallery = Gallery::insert($data);
-            }    
-        }            
+            foreach($request->file('image') as $image){
+                $data['image'] = $this->saveImage($image);
+                Gallery::create($data);
+            }
+        }
 
         return redirect()->route('view.gallery')->with('message','Data Inserted Successfully !!!');
 
     }
 
     public function Edit($id){
-        $data=Gallery::Find($id);
+        $data=Gallery::findOrFail($id);
         return view('backend.gallery.edit',['data'=>$data]);
     }
 
     public function Update(Request $request,$id){
-        $data1=Gallery::find($id);
-        // $data = $request->except('_token','image');
-        if ($request->file('image')){
-            File::delete(public_path('storage/gallery/main'.$data1->image));
-            File::delete(public_path('storage/gallery/thumbnail'.$data1->image));
-            $destinationimage = $request->image;
-            $destinationimage_name = rand(0, 9999) . '-destination' . '.webp';
-            $destinationPath = public_path('storage/gallery/main');
-            $thumbdestinationPath = public_path('storage/gallery/thumbnail');
-            if (!file_exists($destinationPath) && !file_exists($thumbdestinationPath)) {
-                mkdir($destinationPath, 0777, true);
-                mkdir($thumbdestinationPath, 0777, true);
-            }
-            $orginalimage = Image::make($destinationimage->getRealPath())->encode('webp', 100)->save($destinationPath . '/' . $destinationimage_name);
-            $img = Image::make($destinationimage->getRealPath())->encode('webp', 100)->resize(374, 321)->save($thumbdestinationPath . '/' . $destinationimage_name);
-            $data1['image'] = $destinationimage_name;
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:4048',
+        ]);
+        $data1=Gallery::findOrFail($id);
+        if ($request->hasFile('image')){
+            $this->deleteImage($data1->image);
+            $data1->image = $this->saveImage($request->file('image'));
         }
 
         $data1->save();
         return redirect()->route('view.gallery')->with('message','Data Updated Successfully!!!');
     }
-    
+
     public function Delete($id){
-        $data=Gallery::find($id);
-        $img_path=public_path('storage/gallery/').$data->image;
-        if(file_exists($img_path) && $data->image!=null){
-            unlink($img_path);
-            $data->delete();
-        }
-        else{
-            $data->delete();
-        }
+        $data=Gallery::findOrFail($id);
+        $this->deleteImage($data->image);
+        $data->delete();
         return redirect()->back()->with('message',"Data Deleted Successfully!!!");
+    }
+
+    private function saveImage($image){
+        $destinationimage_name = uniqid() . '-destination' . '.webp';
+        $destinationPath = public_path('storage/gallery/main');
+        $thumbdestinationPath = public_path('storage/gallery/thumbnail');
+        File::ensureDirectoryExists($destinationPath);
+        File::ensureDirectoryExists($thumbdestinationPath);
+        Image::make($image->getRealPath())->encode('webp', 100)->save($destinationPath . '/' . $destinationimage_name);
+        Image::make($image->getRealPath())->encode('webp', 100)->resize(374, 321)->save($thumbdestinationPath . '/' . $destinationimage_name);
+        return $destinationimage_name;
+    }
+
+    private function deleteImage($image){
+        if ($image) {
+            File::delete(public_path('storage/gallery/main/'.$image));
+            File::delete(public_path('storage/gallery/thumbnail/'.$image));
+        }
     }
 }

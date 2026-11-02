@@ -59,9 +59,9 @@
                     <div class="w-100 ms-3">
                         <div class="d-flex w-100 justify-content-between">
                             <h6 class="mb-0">{{ $message->name }}</h6>
-                            <small>{{ $message->created_at->format('d/m/Y') }}</small>
+                            <small>{{ optional($message->created_at)->format('d/m/Y') }}</small>
                         </div>
-                        <span>{!! Str::limit($message->message, 100) !!}</span>
+                        <span>{{ Str::limit($message->message, 100) }}</span>
                     </div>
                 </div>
                 @endforeach

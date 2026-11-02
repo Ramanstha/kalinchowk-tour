@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ Route::get('about-us',[App\Http\Controllers\frontend\HomepageController::class,'
 Route::get('packages',[App\Http\Controllers\frontend\HomepageController::class,'package'])->name('package');
 Route::get('services',[App\Http\Controllers\frontend\HomepageController::class,'service'])->name('service');
 Route::get('contact-us',[App\Http\Controllers\frontend\HomepageController::class,'contact'])->name('contact-us');
-Route::post('store-contact-message',[App\Http\Controllers\frontend\HomepageController::class,'storeContactMessage'])->name('store.contact.message');
+Route::post('store-contact-message',[App\Http\Controllers\frontend\HomepageController::class,'storeContactMessage'])->middleware('throttle:5,1')->name('store.contact.message');
 
 Route::get('our-team',[App\Http\Controllers\frontend\PagesController::class,'ourteam'])->name('ourteam');
 Route::get('gallery',[App\Http\Controllers\frontend\PagesController::class,'gallery'])->name('gallery');
@@ -30,7 +31,7 @@ Route::get('package-detail/{id}',[App\Http\Controllers\frontend\PagesController:
 ///////////////////////////////admin Dashboard/////////////////////////////
 
 Route::get('/admin-login',[App\Http\Controllers\Auth\LoginController::class,'Login'])->name('login');
-Route::post('/admin-postlogin',[App\Http\Controllers\Auth\LoginController::class,'Postlogin'])->name('postlogin');
+Route::post('/admin-postlogin',[App\Http\Controllers\Auth\LoginController::class,'Postlogin'])->middleware('throttle:5,1')->name('postlogin');
 
 Route::group(['middleware' => 'auth'], function (){
     
@@ -131,14 +132,6 @@ Route::get('/edit-testimonial/{id}',[App\Http\Controllers\backend\TestimonialsCo
 Route::post('/update-testimonial/{id}',[App\Http\Controllers\backend\TestimonialsController::class,'Update'])->name('update.testimonial');
 Route::get('/delete-testimonial/{id}',[App\Http\Controllers\backend\TestimonialsController::class,'Delete'])->name('delete.testimonial');
 
-//Gallery
-Route::get('/view-gallery',[App\Http\Controllers\backend\GalleryController::class,'View'])->name('view.gallery');
-Route::get('/create-gallery',[App\Http\Controllers\backend\GalleryController::class,'Gallery'])->name('create.gallery');
-Route::post('/store-gallery',[App\Http\Controllers\backend\GalleryController::class,'Store'])->name('store.gallery');
-Route::get('/edit-gallery/{id}',[App\Http\Controllers\backend\GalleryController::class,'Edit'])->name('edit.gallery');
-Route::post('/update-gallery/{id}',[App\Http\Controllers\backend\GalleryController::class,'Update'])->name('update.gallery');
-Route::get('/delete-gallery/{id}',[App\Http\Controllers\backend\GalleryController::class,'Delete'])->name('delete.gallery');
-
 //Blogs
 Route::get('/view-blog',[App\Http\Controllers\backend\BlogController::class,'View'])->name('view.blog');
 Route::get('/create-blog',[App\Http\Controllers\backend\BlogController::class,'Blog'])->name('create.blog');
@@ -146,8 +139,8 @@ Route::post('/store-blog',[App\Http\Controllers\backend\BlogController::class,'S
 Route::get('/edit-blog/{id}',[App\Http\Controllers\backend\BlogController::class,'Edit'])->name('edit.blog');
 Route::post('/update-blog/{id}',[App\Http\Controllers\backend\BlogController::class,'Update'])->name('update.blog');
 Route::get('/delete-blog/{id}',[App\Http\Controllers\backend\BlogController::class,'Delete'])->name('delete.blog');
-});
 
+//Maintenance (admin only)
 Route::get('reset', function (){
     Artisan::call('route:clear');
     Artisan::call('cache:clear');
@@ -168,4 +161,5 @@ Route::get('/storage', function () {
     Artisan::call('storage:link', [
        '--force' => true
     ]);
+});
 });
