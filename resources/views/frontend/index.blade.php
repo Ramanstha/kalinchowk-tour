@@ -206,7 +206,7 @@
             <div class="text-center pb-4">
                 <img class="testimonial-img mx-auto" src="{{ asset('storage/testimonial/'.$client->image) }}" alt="{{ $client->name }}">
                 <div class="testimonial-text bg-white p-4 mt-n5">
-                    <p class="mt-5">{{ Str::limit(strip_tags($client->message), 100) }}</p>
+                    <p class="mt-5">{{ Str::limit(strip_tags($client->message), 150) }}</p>
                     <h5 class="text-truncate">{{ $client->name }}</h5>
                     <span class="text-capitalize">{{ $client->profession }}</span>
                 </div>

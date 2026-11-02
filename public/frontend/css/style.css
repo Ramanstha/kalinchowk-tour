@@ -9971,8 +9971,8 @@ h6,
 .testimonial-carousel .owl-item img.testimonial-img {
   position: relative;
   z-index: 1;
-  width: 110px;
-  height: 110px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 50%;
   border: 5px solid #FFFFFF;
